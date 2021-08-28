@@ -2,15 +2,7 @@ class FontChooser extends React.Component {
 
 	constructor(props) {
 		super(props);
-		var isBold;
-		switch (this.props.bold) {
-			case 'true':
-				isBold = true; break;
-			case 'false':
-				isBold = false; break;
-			default:
-				isBold = false; break;
-		}
+		var isBold = this.props.bold == 'true'? true: false;
 
 		var min = Number(this.props.min);
 		var max = Number(this.props.max);
@@ -49,7 +41,7 @@ class FontChooser extends React.Component {
 		if (this.state.size - 1 >= this.state.min)
 			this.setState({ size: this.state.size - 1 });
 	}
-	sizeDbClickHandler() {
+	sizeDoubleClickHandler() {
 		this.setState({ size: this.state.defaultSize });
 	}
 
@@ -66,7 +58,7 @@ class FontChooser extends React.Component {
 				<input type="checkbox" id="boldCheckbox" checked={isChecked} className={classHidden} onChange={this.boldChangeHandler.bind(this)} />
 				<label htmlFor="fontSizeSpan" className={classHidden}>, size:</label>
 				<button id="decreaseButton" className={classHidden} onClick={this.decreaseClickHandler.bind(this)}>-</button>
-				<span id="fontSizeSpan" className={classHidden} style={{ color: color }} onDoubleClick={this.sizeDbClickHandler.bind(this)}>{this.state.size}</span>
+				<span id="fontSizeSpan" className={classHidden} style={{ color: color }} onDoubleClick={this.sizeDoubleClickHandler.bind(this)}>{this.state.size}</span>
 				<button id="increaseButton" className={classHidden} onClick={this.increaseClickHandler.bind(this)}>+</button><br className={classHidden} />
 				<span id="textSpan" onClick={this.hiddenClickHandler.bind(this)} style={{ fontWeight: weight, fontSize: size }}>{this.props.text}</span>
 			</div>
