@@ -2,7 +2,7 @@ class FontChooser extends React.Component {
 
 	constructor(props) {
 		super(props);
-		var isBold = this.props.bold == 'true'? true: false;
+		var isBold = this.props.bold == 'true' ? true : false;
 
 		var min = Number(this.props.min);
 		var max = Number(this.props.max);
@@ -46,7 +46,6 @@ class FontChooser extends React.Component {
 	}
 
 	render() {
-		var classHidden = this.state.isHidden ? 'hidden' : undefined;
 		var weight = this.state.isBold ? 'bold' : 'normal';
 		var isChecked = this.state.isBold;
 		var size = this.state.size + 'px';
@@ -54,12 +53,12 @@ class FontChooser extends React.Component {
 
 		return (
 			<div>
-				<label htmlFor="boldCheckbox" className={classHidden}>bold:</label>
-				<input type="checkbox" id="boldCheckbox" checked={isChecked} className={classHidden} onChange={this.boldChangeHandler.bind(this)} />
-				<label htmlFor="fontSizeSpan" className={classHidden}>, size:</label>
-				<button id="decreaseButton" className={classHidden} onClick={this.decreaseClickHandler.bind(this)}>-</button>
-				<span id="fontSizeSpan" className={classHidden} style={{ color: color }} onDoubleClick={this.sizeDoubleClickHandler.bind(this)}>{this.state.size}</span>
-				<button id="increaseButton" className={classHidden} onClick={this.increaseClickHandler.bind(this)}>+</button><br className={classHidden} />
+				<label htmlFor="boldCheckbox" hidden={this.state.isHidden}>bold:</label>
+				<input type="checkbox" id="boldCheckbox" checked={isChecked} onChange={this.boldChangeHandler.bind(this)} hidden={this.state.isHidden} />
+				<label htmlFor="fontSizeSpan" hidden={this.state.isHidden}>, size:</label>
+				<button id="decreaseButton" onClick={this.decreaseClickHandler.bind(this)} hidden={this.state.isHidden}>-</button>
+				<span id="fontSizeSpan" style={{ color: color }} onDoubleClick={this.sizeDoubleClickHandler.bind(this)} hidden={this.state.isHidden}>{this.state.size}</span>
+				<button id="increaseButton" onClick={this.increaseClickHandler.bind(this)} hidden={this.state.isHidden}>+</button><br hidden={this.state.isHidden} />
 				<span id="textSpan" onClick={this.hiddenClickHandler.bind(this)} style={{ fontWeight: weight, fontSize: size }}>{this.props.text}</span>
 			</div>
 		);
